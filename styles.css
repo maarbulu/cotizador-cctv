@@ -1,0 +1,458 @@
+/* Cotizador CCTV — mobile first */
+
+:root {
+  --color-fondo: #f4f6f9;
+  --color-superficie: #ffffff;
+  --color-texto: #1b2533;
+  --color-suave: #5b6878;
+  --color-borde: #dde3ea;
+  --color-primario: #0f4c81;
+  --color-primario-claro: #e7f0f8;
+  --color-acento: #f2a516;
+  --color-whatsapp: #128c4a;
+  --color-whatsapp-hover: #0d7039;
+  --color-error: #b3261e;
+  --radio: 12px;
+  --sombra: 0 1px 3px rgba(16, 32, 56, 0.08), 0 4px 12px rgba(16, 32, 56, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---- Cabecera ---- */
+
+.cabecera {
+  background: var(--color-primario);
+  color: #fff;
+  padding: 24px 0 28px;
+}
+
+.cabecera h1 {
+  margin: 0 0 6px;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.cabecera p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ---- Formulario ---- */
+
+.formulario {
+  margin-top: -12px;
+}
+
+.paso {
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra);
+  min-width: 0;
+}
+
+.paso legend,
+.resultados h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.paso legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.paso legend + * {
+  clear: both;
+}
+
+.paso-numero {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primario);
+  color: #fff;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.ayuda {
+  margin: 0 0 8px;
+  color: var(--color-suave);
+  font-size: 0.9375rem;
+}
+
+/* Lugares (chips) */
+
+.lugares {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+}
+
+.chip span {
+  display: block;
+  padding: 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.chip input:checked + span {
+  border-color: var(--color-primario);
+  background: var(--color-primario-claro);
+  color: var(--color-primario);
+}
+
+.chip input:focus-visible + span {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+/* Zonas con contador */
+
+.grupo-zonas {
+  margin: 16px 0 4px;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-suave);
+}
+
+.zonas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zona {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.zona:last-child {
+  border-bottom: 0;
+}
+
+.zona-activa .zona-nombre {
+  font-weight: 600;
+  color: var(--color-primario);
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.contador-boton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-borde);
+  border-radius: 50%;
+  background: var(--color-superficie);
+  color: var(--color-primario);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contador-boton:hover:not(:disabled) {
+  background: var(--color-primario-claro);
+}
+
+.contador-boton:disabled {
+  color: #b5bfcb;
+  cursor: default;
+}
+
+.contador-boton:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.contador-valor {
+  min-width: 2ch;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.total-camaras {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 2px solid var(--color-borde);
+  text-align: right;
+}
+
+/* ---- Resultados ---- */
+
+.resultados h2 {
+  margin: 24px 0 12px;
+}
+
+.tarjetas {
+  display: grid;
+  gap: 16px;
+}
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px 16px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta-recomendada {
+  border: 2px solid var(--color-primario);
+}
+
+.insignia {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--color-acento);
+  color: #3a2700;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.tarjeta-nombre {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.beneficios {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.beneficios li {
+  position: relative;
+  padding: 3px 0 3px 26px;
+}
+
+.beneficios li::before {
+  content: '✓';
+  position: absolute;
+  left: 2px;
+  color: var(--color-whatsapp);
+  font-weight: 700;
+}
+
+.beneficio-visita {
+  font-weight: 600;
+}
+
+.precio {
+  margin: 0 0 8px;
+  font-size: 1.625rem;
+  line-height: 1.2;
+}
+
+.precio-desde {
+  font-size: 0.9375rem;
+  color: var(--color-suave);
+}
+
+.detalle {
+  margin-bottom: 14px;
+}
+
+.detalle summary {
+  cursor: pointer;
+  color: var(--color-primario);
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+.desglose {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.desglose th,
+.desglose td {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--color-borde);
+  text-align: right;
+  vertical-align: top;
+}
+
+.desglose th:first-child,
+.desglose td:first-child {
+  text-align: left;
+}
+
+.desglose th {
+  color: var(--color-suave);
+  font-weight: 600;
+}
+
+.desglose td:not(:first-child) {
+  white-space: nowrap;
+}
+
+.desglose tfoot td {
+  border-bottom: 0;
+}
+
+.desglose .fila-total td {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  border-top: 2px solid var(--color-borde);
+}
+
+.boton {
+  display: block;
+  padding: 14px 16px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.boton-whatsapp {
+  background: var(--color-whatsapp);
+  color: #fff;
+}
+
+.boton-whatsapp:hover {
+  background: var(--color-whatsapp-hover);
+}
+
+.boton:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.aviso {
+  padding: 16px;
+  border: 1px dashed var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  text-align: center;
+  color: var(--color-suave);
+}
+
+.aviso p {
+  margin: 0;
+}
+
+.aviso-medida {
+  border: 2px solid var(--color-primario);
+  border-style: solid;
+  color: var(--color-texto);
+}
+
+.aviso-medida p {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.aviso-error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.nota {
+  margin: 16px 0 0;
+  font-size: 0.875rem;
+  color: var(--color-suave);
+  text-align: center;
+}
+
+.pie {
+  margin-top: 32px;
+  padding: 16px 0 24px;
+  font-size: 0.8125rem;
+  color: var(--color-suave);
+  text-align: center;
+}
+
+/* ---- Pantallas más grandes ---- */
+
+@media (min-width: 640px) {
+  .cabecera h1 {
+    font-size: 2rem;
+  }
+
+  .lugares {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .paso {
+    padding: 20px 24px;
+  }
+
+  .grupos-zonas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+  }
+}
+
+@media (min-width: 960px) {
+  /* Cada tarjeta mantiene su alto para que abrir un desglose no estire las otras. */
+  .tarjetas {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cotizador de cámaras de seguridad</title>
+  <meta name="description" content="Elige qué quieres proteger, mira tres propuestas con precio y agenda tu visita técnica gratis por WhatsApp.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <h1>Cámaras de seguridad instaladas</h1>
+      <p>Elige qué quieres proteger y mira tu precio al instante. La visita técnica es gratis.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <form id="formulario" class="formulario" novalidate>
+      <fieldset class="paso">
+        <legend><span class="paso-numero">1</span> ¿Qué quieres proteger?</legend>
+        <div id="lugares" class="lugares"></div>
+      </fieldset>
+
+      <fieldset class="paso">
+        <legend><span class="paso-numero">2</span> ¿Qué zonas?</legend>
+        <p class="ayuda">Indica cuántas cámaras quieres en cada zona.</p>
+        <div class="grupos-zonas">
+          <div>
+            <h3 class="grupo-zonas">Afuera</h3>
+            <ul id="zonas-exterior" class="zonas"></ul>
+          </div>
+          <div>
+            <h3 class="grupo-zonas">Adentro</h3>
+            <ul id="zonas-interior" class="zonas"></ul>
+          </div>
+        </div>
+        <p class="total-camaras" aria-live="polite">Total: <strong id="total-camaras">0 cámaras</strong></p>
+      </fieldset>
+    </form>
+
+    <section class="resultados" aria-labelledby="titulo-resultados">
+      <h2 id="titulo-resultados"><span class="paso-numero">3</span> Elige tu propuesta</h2>
+      <div id="resultados" aria-live="polite"></div>
+      <p class="nota">Precio referencial. El precio final se confirma en la visita técnica gratuita.</p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">Precios en soles, incluyen IGV.</div>
+  </footer>
+
+  <script src="calculo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
