@@ -1,0 +1,21 @@
+{
+  "camaras": {
+    "interior": { "2MP": 120, "4MP": 180 },
+    "exterior": { "2MP": 150, "4MP": 220 }
+  },
+  "nvr": [
+    { "canales": 4, "precio": 280 },
+    { "canales": 8, "precio": 420 },
+    { "canales": 16, "precio": 750 }
+  ],
+  "discos": [
+    { "tb": 1, "precio": 220 },
+    { "tb": 2, "precio": 320 },
+    { "tb": 4, "precio": 520 },
+    { "tb": 8, "precio": 950 }
+  ],
+  "instalacion": {
+    "porPunto": 80,
+    "materialesPorPunto": 40
+  }
+}

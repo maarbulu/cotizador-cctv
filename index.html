@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cotizador de Cámaras</title>
+  <meta name="description" content="Calcula el precio de tu sistema de cámaras de seguridad y agenda tu visita técnica gratis.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="cabecera">
+      <p class="rec"><span class="rec-punto" aria-hidden="true"></span>REC</p>
+      <h1>¿Cuánto cuesta proteger tu casa o negocio?</h1>
+      <p class="bajada">Indica cuántas cámaras necesitas y mira tres propuestas con instalación incluida. La visita técnica es gratis.</p>
+    </header>
+
+    <section class="formulario" aria-label="Cantidad de cámaras">
+      <div class="campo">
+        <label for="interiores">Cámaras dentro</label>
+        <p class="ayuda" id="ayuda-interiores">Sala, caja, pasillo, almacén</p>
+        <div class="contador">
+          <button type="button" class="contador-boton" data-campo="interiores" data-paso="-1" aria-label="Quitar una cámara dentro">−</button>
+          <input id="interiores" type="number" inputmode="numeric" min="0" max="16" value="2" aria-describedby="ayuda-interiores">
+          <button type="button" class="contador-boton" data-campo="interiores" data-paso="1" aria-label="Agregar una cámara dentro">+</button>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="exteriores">Cámaras fuera</label>
+        <p class="ayuda" id="ayuda-exteriores">Entrada, cochera, patio, fachada</p>
+        <div class="contador">
+          <button type="button" class="contador-boton" data-campo="exteriores" data-paso="-1" aria-label="Quitar una cámara fuera">−</button>
+          <input id="exteriores" type="number" inputmode="numeric" min="0" max="16" value="2" aria-describedby="ayuda-exteriores">
+          <button type="button" class="contador-boton" data-campo="exteriores" data-paso="1" aria-label="Agregar una cámara fuera">+</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-live="polite">
+      <div id="aviso" class="aviso" hidden></div>
+      <div id="propuestas" class="propuestas"></div>
+      <p id="nota" class="nota">Precio referencial. El precio final se confirma en la visita técnica gratuita.</p>
+    </section>
+  </main>
+
+  <script src="calculo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
